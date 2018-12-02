@@ -1,0 +1,14 @@
+<div class="month">
+	<div class="month-name">{{ date | toLocalizedMonthName | async }}</div>
+	<div class="week-days">
+		<div class="week-day-name" *ngFor="let weekday of weekdays | async">{{weekday}}</div>
+	</div>
+	<div class="weeks">
+		<div class="week" *ngFor="let week of (date | getMonthWeeks)">
+			<div *ngFor="let day of week" appTwoMonthPickerDay class="day" (click)="selectDay(day)" [day]="day" [selectedDates]="selectedDates">
+				<div class="day-label day-number">{{day | date:'dd'}}</div>
+				<div class="day-label day-fare">$22</div>
+			</div>
+		</div>
+	</div>
+</div>
