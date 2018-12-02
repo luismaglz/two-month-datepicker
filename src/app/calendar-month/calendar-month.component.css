@@ -1,0 +1,21 @@
+.week {
+    display: flex;
+    flex-direction: row;
+}
+
+.weeek:last-child{
+    justify-content: flex-start;
+}
+
+.week:first-child{
+    justify-content: flex-end;
+}
+
+.month {
+    width: 280px;
+    margin-left:20px;
+    margin-bottom: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    transition: margin 300ms;
+}

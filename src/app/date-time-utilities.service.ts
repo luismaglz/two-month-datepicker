@@ -1,40 +1,43 @@
-import { Injectable, InjectionToken, Injector, Optional, Inject } from '@angular/core';
-import moment from 'moment';
-import { Moment } from 'moment';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import * as moment from "moment";
+import { Locale } from "moment";
+import { BehaviorSubject } from "rxjs";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class DateTimeUtilitiesService {
-
   protected locale: string;
-  protected momentLocaleData: moment.Locale;
-  protected defaultCulture: string = 'es';
+  protected momentLocaleData: Locale;
+  protected defaultCulture: string = "en";
 
-  longDaysOfWeek: BehaviorSubject<string[]>;
-  shortDaysOfWeek: BehaviorSubject<string[]>;
-  narrowDaysOfWeek: BehaviorSubject<string[]>;
-  longMonths: BehaviorSubject<string[]>;
-  shortMonths: BehaviorSubject<string[]>;
+  longDaysOfWeek: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  shortDaysOfWeek: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  narrowDaysOfWeek: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  longMonths: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  shortMonths: BehaviorSubject<string[]> = new BehaviorSubject([]);
 
   constructor() {
     this.locale = this.defaultCulture;
+    this.momentLocaleData = moment.localeData(this.defaultCulture);
     this.updateDateLabels();
   }
 
   /**
    * Retrieve the dates for the days for a given month in a year
-   * @param month 
-   * @param year 
+   * @param month
+   * @param year
    */
   public getMonthDates(month: number, year: number): Date[] {
     const properties = {
       year,
       month
-    }
-    const endOfMonth = moment(properties).locale(this.locale).endOf('month').date();
+    };
+    const endOfMonth = moment(properties)
+      .locale(this.locale)
+      .endOf("month")
+      .date();
     const dates = [];
     for (let day = 1; day <= endOfMonth; day++) {
-      dates.push(new Date(year, month, day))
+      dates.push(new Date(year, month, day));
     }
     return dates;
   }
@@ -49,11 +52,15 @@ export class DateTimeUtilitiesService {
         return [];
       }
       return week;
-    }, [])
+    }, []);
     return weeks;
-  };
+  }
 
-  public getMonthsAhead(month: number, year: number, numberOfMonths: number): Date[] {
+  public getMonthsAhead(
+    month: number,
+    year: number,
+    numberOfMonths: number
+  ): Date[] {
     const months = [];
     for (let x = 0; x < numberOfMonths; x++) {
       const date = new Date(year, month, 2);
@@ -66,6 +73,18 @@ export class DateTimeUtilitiesService {
   public getNextMonth(month: number, year: number): Date {
     const date = new Date(year, month, 2);
     date.setMonth(date.getMonth() + 1);
+    return date;
+  }
+
+  public addMonths(d: Date, monthsToAdd: number): Date {
+    const date = new Date(d.getTime())
+    date.setMonth(date.getMonth() + monthsToAdd);
+    return date;
+  }
+
+  public substractMonths(d: Date, monthsToSubstract: number): Date {
+    const date = new Date(d.getTime())
+    date.setMonth(date.getMonth() - monthsToSubstract);
     return date;
   }
 
@@ -85,5 +104,4 @@ export class DateTimeUtilitiesService {
     }
     return valuesArray;
   }
-
 }

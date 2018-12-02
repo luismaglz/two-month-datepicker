@@ -11,10 +11,13 @@ export class TwoMonthPickerDayDirective {
   @HostBinding('class.between-selected')
   isBetweenSelected: boolean;
 
+  @Input() day: Date;
+
   @Input()
   set selectedDates(dates: Date[]) {
+
     // Set selected
-    this.isSelected = dates.indexOf(this.day) > -1;
+    this.isSelected = dates.filter(d => d!= null).findIndex(d => this.day.getTime() === d.getTime()) > -1;
 
     // Set between selected dates
     this.isBetweenSelected = false;
@@ -27,8 +30,6 @@ export class TwoMonthPickerDayDirective {
       }, dates[0])
     }
   };
-
-  @Input() day: Date;
 
   constructor() { }
 
