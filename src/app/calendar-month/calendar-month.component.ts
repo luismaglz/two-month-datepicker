@@ -12,8 +12,10 @@ export class CalendarMonthComponent {
 
   @ContentChild(CalendarDayDirective, { read: TemplateRef }) dayTemplate;
   @Input() date: Date;
+  @Input() weekdayFormat: 'Narrow'|'Short'|'Full' = 'Narrow';
 
-  weekdays = this.momentLocaleService.shortDaysOfWeek;
+  shortWeekdays = this.momentLocaleService.shortDaysOfWeek;
+  narrowWeekdays = this.momentLocaleService.narrowDaysOfWeek;
 
   constructor(protected momentLocaleService: DateTimeUtilitiesService) { }
 }

@@ -1,9 +1,9 @@
 <div class="date-picker-header">
   <mat-form-field [appearance]="'outline'">
-    <input matInput type="text" placeholder="Depart date" (click)="selectFirstDate()" [value]="firstDate | date: 'yyyy-MM-dd'" />
+    <input matInput type="text" placeholder="Depart date" (click)="selectFirstDate()" [value]="firstDate | date: 'MMM d, y'" />
   </mat-form-field>
   <mat-form-field [appearance]="'outline'">
-    <input matInput type="text" placeholder="Return date" (click)="selectSecondDate()" [value]="secondDate | date: 'yyyy-MM-dd'" />
+    <input matInput type="text" placeholder="Return date" (click)="selectSecondDate()" [value]="secondDate | date: 'MMM d, y'" />
   </mat-form-field>
   <div color="primary" type="button" class="exit-button mat-elevation-z5" (click)="close()">
     <mat-icon>close</mat-icon>
@@ -19,10 +19,10 @@
     </button>
   </div>
   <div class="month-container-months">
-    <app-calendar-month [date]="currentMonth">
+    <app-calendar-month [date]="currentMonth" [weekdayFormat]="'Narrow'">
       <app-calendar-day-low-fare class="day" *appCalendarDay="let date" [day]="date" [selectedDates]="selectedDates" (click)="selectDay(date)"></app-calendar-day-low-fare>
     </app-calendar-month>
-    <app-calendar-month [date]="nextMonth">
+    <app-calendar-month [date]="nextMonth" [weekdayFormat]="'Narrow'">
       <app-calendar-day-low-fare class="day" *appCalendarDay="let date" [day]="date" [selectedDates]="selectedDates" (click)="selectDay(date)"></app-calendar-day-low-fare>
     </app-calendar-month>
   </div>

@@ -3,9 +3,19 @@ app-mat-two-month-date-picker .mat-form-field-appearance-outline .mat-form-field
     padding-bottom: 0px;
 }
 
+app-mat-two-month-date-picker .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding:10px;
+    border-top:0.45em solid transparent;
+}
+
+app-mat-two-month-date-picker .mat-form-field-flex {
+    width:160px;
+}
+
+
 app-mat-two-month-date-picker .exit-button {
-    height:25px;
-    width:25px;
+    height:20px;
+    width:20px;
     border-radius: 50%;
     background-color:grey;
     margin-left:20px;
@@ -13,15 +23,14 @@ app-mat-two-month-date-picker .exit-button {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-top:5px;
 }
 
 app-mat-two-month-date-picker .exit-button .mat-icon {
+    height:18px;
+    width:18px;
     color:#fff;
-}
-
-app-mat-two-month-date-picker .mat-mini-fab .mat-icon {
-    height:10px;
-    width:10px;
+    font-size:18px;
 }
 
 app-mat-two-month-date-picker .date-picker-header {
@@ -40,6 +49,7 @@ app-mat-two-month-date-picker .month-container {
 
 app-mat-two-month-date-picker app-calendar-month {
     flex-grow: 1;
+    transition: all 300ms;
 }
 
 app-mat-two-month-date-picker .month {
@@ -88,7 +98,7 @@ app-mat-two-month-date-picker .date-picker-footer {
     flex-direction: row;
     justify-content: flex-end;
     border-top: 2px solid lightgray;
-    padding:10px 20px;
+    padding:15px;
 }
 
 
@@ -134,11 +144,11 @@ app-mat-two-month-date-picker .day.end {
 }
 
 app-mat-two-month-date-picker .day.selected {
-    background-color: lightblue;
+    background-color: lightgray;
 }
 
 app-mat-two-month-date-picker .day.selected .day-label {
-    background-color: darkgreen;
+    background-color: orange;
     color: #fff;
     border-radius: 50%;
 }
@@ -151,6 +161,6 @@ app-mat-two-month-date-picker .day-label {
 }
 
 app-mat-two-month-date-picker .day.between-selected {
-    background-color: lightblue;
+    background-color: lightgray;
     border-radius: 0;
 }

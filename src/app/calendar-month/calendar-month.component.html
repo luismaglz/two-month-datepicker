@@ -1,7 +1,10 @@
 <div class="month">
-	<div class="month-name">{{ date | toLocalizedMonthName | async }}</div>
-	<div class="week-days">
-		<div class="week-day-name" *ngFor="let weekday of weekdays | async">{{weekday}}</div>
+	<div class="month-name">{{ date | toLocalizedMonthName | async }} {{date|date:'yyyy'}}</div>
+	<div *ngIf="weekdayFormat === 'Short'" class="week-days">
+		<div class="week-day-name" *ngFor="let weekday of shortWeekdays | async">{{weekday}}</div>
+	</div>
+	<div *ngIf="weekdayFormat === 'Narrow'" class="week-days">
+		<div class="week-day-name" *ngFor="let weekday of narrowWeekdays | async">{{weekday}}</div>
 	</div>
 	<div class="weeks">
 		<div class="week" *ngFor="let week of (date | getMonthWeeks)">
