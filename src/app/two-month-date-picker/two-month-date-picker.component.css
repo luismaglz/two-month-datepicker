@@ -1,0 +1,87 @@
+p {
+    font-family: Lato;
+  }
+  
+  .day-label {
+    display: flex;
+  }
+  
+  .day-fare {
+    font-size:11px;
+    color:green;
+  }
+  
+  .day {
+      display: inline-flex;
+      flex-direction: column;
+      width:40px;
+      height:40px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .day.selected {
+    background-color:darkgreen;
+    color:#fff;
+  }
+  
+  .day.selected .day-label {
+    color:#fff;
+  }
+  
+  .day.between-selected {
+    background-color:lightblue;
+    border-radius:0;
+  }
+  
+  .week-days{
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .week-day-name {
+      height: 40px;
+      width: 40px; 
+      box-sizing: border-box;
+      display: inline-flex;
+      justify-content: center;
+  }
+  
+  .week {
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .weeek:last-child{
+      justify-content: flex-start;
+  }
+  
+  .week:first-child{
+      justify-content: flex-end;
+  }
+  
+  .month {
+      width: 280px;
+      margin-left:20px;
+      margin-bottom: 20px;
+      display: inline-flex;
+      flex-direction: column;
+      transition: margin 300ms;
+  }
+  
+  .month:first-child {
+    margin-left:0;
+  }
+  
+  .month-name{
+      justify-content: center;
+      display: flex;
+      margin-bottom:5px;
+  }
+  
+  .month-container {
+    flex-direction: row;
+    flex-flow: nowrap;
+  }

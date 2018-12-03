@@ -1,5 +1,6 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter, ContentChild, TemplateRef } from '@angular/core';
 import { DateTimeUtilitiesService } from '../date-time-utilities.service';
+import { CalendarDayDirective } from '../calendar-day.directive';
 
 @Component({
   selector: 'app-calendar-month',
@@ -9,15 +10,10 @@ import { DateTimeUtilitiesService } from '../date-time-utilities.service';
 })
 export class CalendarMonthComponent {
 
+  @ContentChild(CalendarDayDirective, { read: TemplateRef }) dayTemplate;
   @Input() date: Date;
-  @Input() selectedDates: Date[];
-  @Output() onDaySelected = new EventEmitter<Date>();
 
   weekdays = this.momentLocaleService.shortDaysOfWeek;
 
   constructor(protected momentLocaleService: DateTimeUtilitiesService) { }
-
-  selectDay(day:Date){
-    this.onDaySelected.emit(day);
-  }
 }

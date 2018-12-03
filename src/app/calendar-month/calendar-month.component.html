@@ -5,8 +5,8 @@
 	</div>
 	<div class="weeks">
 		<div class="week" *ngFor="let week of (date | getMonthWeeks)">
-			<div *ngFor="let day of week" appTwoMonthPickerDay class="day" (click)="selectDay(day)" [day]="day" [selectedDates]="selectedDates">
-				<div class="day-label day-number">{{day | date:'dd'}}</div>
+			<div *ngFor="let day of week">
+				<ng-container *ngTemplateOutlet="dayTemplate; context: { $implicit: day }"></ng-container>
 			</div>
 		</div>
 	</div>
