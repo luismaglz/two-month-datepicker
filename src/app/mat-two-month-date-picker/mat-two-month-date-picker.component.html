@@ -2,7 +2,7 @@
   <mat-form-field [appearance]="'outline'">
     <input matInput type="text" placeholder="Depart date" (click)="selectFirstDate()" [value]="firstDate | date: 'MMM d, y'" />
   </mat-form-field>
-  <mat-form-field [appearance]="'outline'">
+  <mat-form-field [appearance]="'outline'" *ngIf="_selectionType === 'RoundTrip'" >
     <input matInput type="text" placeholder="Return date" (click)="selectSecondDate()" [value]="secondDate | date: 'MMM d, y'" />
   </mat-form-field>
   <div color="primary" type="button" class="exit-button mat-elevation-z5" (click)="close()">

@@ -1,3 +1,17 @@
 <app-two-month-date-picker></app-two-month-date-picker>
 <br /><br />
-<app-mat-two-month-date-picker class="datepicker mat-elevation-z10"></app-mat-two-month-date-picker>
+<div>onSelectionChanged {{onSelectionChanged}}</div>
+<div>onSelectionDone {{onSelectionDone}}</div>
+<div>onClosed {{onClosed}}</div>
+
+<br /><br />
+<input type="radio" name="triptype" (click)="tripType = 'OneWay'">One Way
+<input type="radio" name="triptype" (click)="tripType = 'RoundTrip'">Round Trip
+<br /><br />
+
+<app-mat-two-month-date-picker class="datepicker mat-elevation-z10" 
+[selectionType]="tripType"
+(onSelectionChanged)="onSelectionChanged = $event"
+(onSelectionDone)="onSelectionDone = $event"
+(onClosed)="onClosed = 'closed clicked'"
+></app-mat-two-month-date-picker>

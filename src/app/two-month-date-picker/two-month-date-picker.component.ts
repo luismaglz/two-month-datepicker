@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+  Input
+} from "@angular/core";
 import { DateTimeUtilitiesService } from "../date-time-utilities.service";
 
 enum DateToSelect {
@@ -13,10 +19,15 @@ enum DateToSelect {
   encapsulation: ViewEncapsulation.None
 })
 export class TwoMonthDatePickerComponent {
+  @Input() set selectionType(type: "OneWay" | "RoundTrip"){
+    this._selectionType = type;
+    this.selectedDates = [this.selectedDates[0]]
+  }
   @Output() onSelectionChanged = new EventEmitter<Date[]>();
   @Output() onSelectionDone = new EventEmitter<Date[]>();
   @Output() onClosed = new EventEmitter<void>();
 
+  _selectionType = 'OneWay';
   currentMonth: Date;
   nextMonth: Date;
   selectedDates: Date[];
@@ -36,7 +47,10 @@ export class TwoMonthDatePickerComponent {
    * Scrolls the months to show one month to the past
    */
   previous() {
-    this.currentMonth = this.dateTimeUtilities.substractMonths(this.currentMonth, 1);
+    this.currentMonth = this.dateTimeUtilities.substractMonths(
+      this.currentMonth,
+      1
+    );
     this.nextMonth = this.dateTimeUtilities.addMonths(this.currentMonth, 1);
   }
 
@@ -44,7 +58,7 @@ export class TwoMonthDatePickerComponent {
    * Scrolls the months to show one month to the future;
    */
   next() {
-    this.currentMonth = this.dateTimeUtilities.addMonths(this.currentMonth,1);
+    this.currentMonth = this.dateTimeUtilities.addMonths(this.currentMonth, 1);
     this.nextMonth = this.dateTimeUtilities.addMonths(this.currentMonth, 1);
   }
 
@@ -53,20 +67,24 @@ export class TwoMonthDatePickerComponent {
    * @param day Date for the day selected
    */
   selectDay(day: Date) {
-    switch (this.dateToSelect) {
-      case DateToSelect.FirstDate: {
-        this.selectedDates = [day, this.secondDate];
-        this.dateToSelect = DateToSelect.SecondDate;
-        break;
+    if (this._selectionType === "RoundTrip") {
+      switch (this.dateToSelect) {
+        case DateToSelect.FirstDate: {
+          this.selectedDates = [day, this.secondDate];
+          this.dateToSelect = DateToSelect.SecondDate;
+          break;
+        }
+        case DateToSelect.SecondDate: {
+          this.selectedDates = [this.firstDate, day];
+          break;
+        }
+        default:
+          break;
       }
-      case DateToSelect.SecondDate: {
-        this.selectedDates = [this.firstDate, day];
-        break;
-      }
-      default:
-        break;
+      this.sortSelectedDates();
+    }else if(this._selectionType === 'OneWay'){
+      this.selectedDates = [day];
     }
-    this.sortSelectedDates();
     this.setDates();
     this.onSelectionChanged.emit(this.selectedDates);
   }
@@ -88,7 +106,7 @@ export class TwoMonthDatePickerComponent {
   /**
    * Clears all selected adtes
    */
-  reset(){
+  reset() {
     this.selectedDates = [];
     this.setDates();
     this.dateToSelect = DateToSelect.FirstDate;
@@ -97,26 +115,28 @@ export class TwoMonthDatePickerComponent {
   /**
    * Handler for clicking the done button, emits the current date selection
    */
-  done(){
+  done() {
     this.onSelectionDone.emit(this.selectedDates);
   }
 
   /**
    * Handler for clicking the close button, emits the close event
    */
-  close(){
+  close() {
     this.onClosed.emit();
   }
 
-  protected sortSelectedDates(){
-    if(!this.selectedDates[0] || !this.selectedDates[1]){
+  protected sortSelectedDates() {
+    if (!this.selectedDates[0] || !this.selectedDates[1]) {
       return;
     }
 
-    this.selectedDates = this.selectedDates.sort((d1,d2) => d1.getTime() - d2.getTime());
+    this.selectedDates = this.selectedDates.sort(
+      (d1, d2) => d1.getTime() - d2.getTime()
+    );
   }
 
-  protected setDates(){
+  protected setDates() {
     this.firstDate = this.selectedDates[0] ? this.selectedDates[0] : null;
     this.secondDate = this.selectedDates[1] ? this.selectedDates[1] : null;
   }

@@ -29,6 +29,8 @@ export class CalendarDayLowFareComponent {
 
     this.isSelected = index > -1;
     
+    this.begin = this.end = false;
+
     if (dates[0] && dates[1]) {
       this.begin = index === 0;
       this.end = index === 1;
