@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  ViewEncapsulation,
-  Input
-} from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from "@angular/core";
 import { DateTimeUtilitiesService } from "../date-time-utilities.service";
 
 enum DateToSelect {
@@ -34,6 +28,7 @@ export class TwoMonthDatePickerComponent {
   firstDate: Date;
   secondDate: Date;
   dateToSelect: DateToSelect;
+
   constructor(protected dateTimeUtilities: DateTimeUtilitiesService) {
     // Initialize component properties
     this.currentMonth = new Date();
@@ -139,5 +134,9 @@ export class TwoMonthDatePickerComponent {
   protected setDates() {
     this.firstDate = this.selectedDates[0] ? this.selectedDates[0] : null;
     this.secondDate = this.selectedDates[1] ? this.selectedDates[1] : null;
+  }
+
+  protected validate(){
+    
   }
 }

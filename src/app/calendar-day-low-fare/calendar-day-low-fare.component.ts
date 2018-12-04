@@ -6,6 +6,8 @@ import { Component, OnInit, HostBinding, Input } from "@angular/core";
   styleUrls: ["./calendar-day-low-fare.component.css"]
 })
 export class CalendarDayLowFareComponent {
+  _day: Date;
+
   @HostBinding("class.selected")
   isSelected: boolean;
 
@@ -18,14 +20,22 @@ export class CalendarDayLowFareComponent {
   @HostBinding("class.end")
   end: boolean;
 
-  @Input() day: Date;
+  @HostBinding('class.available')
+  available: boolean;
+
+  @Input() set day (day: Date){
+    this._day = day;
+    if(day && day.getDate() % 2 === 0){
+      this.available = true;
+    }
+  };
 
   @Input()
   set selectedDates(dates: Date[]) {
     // Set selected
     const index = dates
       .filter(d => d != null)
-      .findIndex(d => this.day.getTime() === d.getTime());
+      .findIndex(d => this._day.getTime() === d.getTime());
 
     this.isSelected = index > -1;
     
@@ -40,7 +50,7 @@ export class CalendarDayLowFareComponent {
     this.isBetweenSelected = false;
     if (Array.isArray(dates) && dates.length > 1) {
       dates.reduce((previousDate, currentDate) => {
-        if (previousDate < this.day && currentDate > this.day) {
+        if (previousDate < this._day && currentDate > this._day) {
           this.isBetweenSelected = true;
         }
         return currentDate;
@@ -48,5 +58,7 @@ export class CalendarDayLowFareComponent {
     }
   }
 
-  constructor() {}
+  constructor() {
+
+  }
 }

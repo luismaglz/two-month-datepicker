@@ -1,9 +1,15 @@
 <div class="date-picker-header">
-  <mat-form-field [appearance]="'outline'">
-    <input matInput type="text" placeholder="Depart date" (click)="selectFirstDate()" [value]="firstDate | date: 'MMM d, y'" />
+  <mat-form-field appearance="outline">
+    <mat-label>Depart date</mat-label>
+    <input matInput type="text" (click)="selectFirstDate()" [value]="firstDate | date: 'MMM d, y'" [formControl]="departureFormControl" [errorStateMatcher]="matcher"/>
+    <mat-icon *ngIf="!departureFormControl.hasError() && firstDate" class="date-selected" matSuffix>check_circle</mat-icon>
+    <mat-icon *ngIf="departureFormControl.hasError()" class="bad-date-selected" matSuffix>warning</mat-icon>
+    <mat-error  *ngIf="departureFormControl.hasError()">Select an available date</mat-error>
   </mat-form-field>
-  <mat-form-field [appearance]="'outline'" *ngIf="_selectionType === 'RoundTrip'" >
-    <input matInput type="text" placeholder="Return date" (click)="selectSecondDate()" [value]="secondDate | date: 'MMM d, y'" />
+  <mat-form-field appearance="outline" *ngIf="_selectionType === 'RoundTrip'">
+    <mat-label>Return date</mat-label>
+    <input matInput type="text" (click)="selectSecondDate()" [value]="secondDate | date: 'MMM d, y'" [formControl]="arrivalFormControl" [errorStateMatcher]="matcher"/>
+    <mat-icon class="date-selected" matSuffix *ngIf="secondDate">check_circle</mat-icon>
   </mat-form-field>
   <div color="primary" type="button" class="exit-button mat-elevation-z5" (click)="close()">
     <mat-icon>close</mat-icon>

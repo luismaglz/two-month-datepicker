@@ -1,48 +1,49 @@
-
-app-mat-two-month-date-picker .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    padding-bottom: 0px;
-}
-
-app-mat-two-month-date-picker .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding:10px;
-    border-top:0.45em solid transparent;
-}
-
 app-mat-two-month-date-picker .mat-form-field-flex {
-    width:160px;
+    width: 200px;
 }
 
+app-mat-two-month-date-picker .date-selected {
+    color: green;
+}
+
+app-mat-two-month-date-picker .bad-date-selected {
+    color: red;
+}
+
+app-mat-two-month-date-picker .mat-form-field-wrapper {
+    padding-bottom:0;
+}
 
 app-mat-two-month-date-picker .exit-button {
-    height:20px;
-    width:20px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
-    background-color:grey;
-    margin-left:20px;
+    background-color: grey;
+    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
 app-mat-two-month-date-picker .exit-button .mat-icon {
-    height:18px;
-    width:18px;
-    color:#fff;
-    font-size:18px;
+    height: 18px;
+    width: 18px;
+    color: #fff;
+    font-size: 18px;
 }
 
 app-mat-two-month-date-picker .date-picker-header {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding:10px;
+    padding: 10px;
     border-bottom: 2px solid lightgray;
 }
 
 app-mat-two-month-date-picker .month-container {
-    padding:10px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
 }
@@ -56,13 +57,14 @@ app-mat-two-month-date-picker .month {
     width: 100%;
 }
 
-app-mat-two-month-date-picker .month-container-months,app-mat-two-month-date-picker .month-container-controls {
+app-mat-two-month-date-picker .month-container-months,
+app-mat-two-month-date-picker .month-container-controls {
     display: flex;
     flex-direction: row;
 }
 
 app-mat-two-month-date-picker .month-container-controls {
-    height:20px;
+    height: 20px;
     justify-content: space-between;
 }
 
@@ -71,19 +73,19 @@ app-mat-two-month-date-picker .month-container-months {
     margin-top: -20px;
 }
 
-app-mat-two-month-date-picker .month-name{
-    padding:10px 0;
+app-mat-two-month-date-picker .month-name {
+    padding: 10px 0;
     margin-bottom: 0;
 }
 
-app-mat-two-month-date-picker .week-days{
+app-mat-two-month-date-picker .week-days {
     background-color: lightgray;
     width: 100%;
     justify-content: center;
 }
 
-app-mat-two-month-date-picker .week-day-name{
-    height:auto;
+app-mat-two-month-date-picker .week-day-name {
+    height: auto;
 }
 
 app-mat-two-month-date-picker .weeks {
@@ -98,13 +100,13 @@ app-mat-two-month-date-picker .date-picker-footer {
     flex-direction: row;
     justify-content: flex-end;
     border-top: 2px solid lightgray;
-    padding:15px;
+    padding: 15px;
 }
 
 
 app-mat-two-month-date-picker .date-picker-footer .mat-raised-button {
-    background-color:grey;
-    color:#fff;
+    background-color: grey;
+    color: #fff;
     height: 30px;
     line-height: 34px;
     text-transform: uppercase;
@@ -130,7 +132,12 @@ app-mat-two-month-date-picker .day {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-top:1px;
+    margin-top: 1px;
+    cursor:pointer;
+}
+
+app-mat-two-month-date-picker .day.available {
+    font-weight: bold;
 }
 
 app-mat-two-month-date-picker .day.begin {
@@ -157,7 +164,7 @@ app-mat-two-month-date-picker .day-label {
     width: 40px;
     height: 40px;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
 
 app-mat-two-month-date-picker .day.between-selected {

@@ -16,8 +16,9 @@ import { MatTwoMonthDatePickerComponent } from "./mat-two-month-date-picker/mat-
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatIconModule } from "@angular/material/icon";
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,7 +27,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
