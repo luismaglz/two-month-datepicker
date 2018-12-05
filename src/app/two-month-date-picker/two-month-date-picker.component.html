@@ -1,6 +1,6 @@
 <div class="date-picker-header">
-  <input type="date" (click)="selectFirstDate()" [value]="firstDate | date: 'yyyy-MM-dd'" />
-  <input type="date" (click)="selectSecondDate()" [value]="secondDate | date: 'yyyy-MM-dd'" />
+  <input type="date" (click)="selectFirstDate()" [value]="selectedDates[0] | date: 'yyyy-MM-dd'" />
+  <input type="date" (click)="selectSecondDate()" [value]="selectedDates[1] | date: 'yyyy-MM-dd'" />
   <button type="button" (click)="close()">X</button>
 </div>
 <div class="month-container">

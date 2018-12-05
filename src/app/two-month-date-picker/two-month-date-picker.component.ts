@@ -25,8 +25,6 @@ export class TwoMonthDatePickerComponent {
   currentMonth: Date;
   nextMonth: Date;
   selectedDates: Date[];
-  firstDate: Date;
-  secondDate: Date;
   dateToSelect: DateToSelect;
 
   constructor(protected dateTimeUtilities: DateTimeUtilitiesService) {
@@ -65,12 +63,12 @@ export class TwoMonthDatePickerComponent {
     if (this._selectionType === "RoundTrip") {
       switch (this.dateToSelect) {
         case DateToSelect.FirstDate: {
-          this.selectedDates = [day, this.secondDate];
+          this.selectedDates = [day, this.selectedDates[1]];
           this.dateToSelect = DateToSelect.SecondDate;
           break;
         }
         case DateToSelect.SecondDate: {
-          this.selectedDates = [this.firstDate, day];
+          this.selectedDates = [this.selectedDates[0], day];
           break;
         }
         default:
@@ -132,8 +130,8 @@ export class TwoMonthDatePickerComponent {
   }
 
   protected setDates() {
-    this.firstDate = this.selectedDates[0] ? this.selectedDates[0] : null;
-    this.secondDate = this.selectedDates[1] ? this.selectedDates[1] : null;
+    // This method is to be implemented by components extending this component.
+    // It is called every time dates are updated
   }
 
   protected validate(){
